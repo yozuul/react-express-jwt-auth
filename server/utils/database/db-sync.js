@@ -1,4 +1,5 @@
 import { postgres } from './db-connect'
+import { HashPassword } from './crypt-password'
 import { darkGray, red } from 'ansicolor'
 
 const pgSync = async (models) => {
@@ -7,14 +8,21 @@ const pgSync = async (models) => {
         await postgres.sync()
         await (async () => {
             const defaultRoles = ['admin', 'user']
+            const hashPass = HashPassword.encrypt('admin')
             const defaultUser = {
-                login: 'admin', email: 'admin@admin.ru', password: 'admin', role_id: 1, email_activated: true
+                name: 'admin', login: 'admin', email: 'admin@admin.ru', password: hashPass, role_id: 1, email_activated: true
             }
+
             const existRole = await RoleModel.findAll()
             if(existRole.length === 0) {
-                defaultRoles.map((role) => RoleModel.create({ name: role }))
+                for(let role of ['admin', 'user']) {
+                    await RoleModel.create({ name: role })
+                }
             }
-            const existUser = await UserModel.findOne({ name: 'admin'})
+
+            const existUser = await UserModel.findOne({
+                where: { login: 'admin'}
+            })
             if(!existUser) {
                 UserModel.create(defaultUser)
             }

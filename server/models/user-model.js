@@ -1,4 +1,5 @@
 import { postgres, DataTypes } from '../utils'
+import { HashPassword } from '../utils/database'
 
 const { STRING, INTEGER, BOOLEAN } = DataTypes
 
@@ -17,14 +18,21 @@ export default postgres.define('users', {
         type: STRING,
         allowNull: false,
         unique: true,
-        isEmail: true,
-        isInt: { msg: 'Неверный формат Email' }
+        validate: {
+            isEmail: { msg: 'Неверный формат Email' },
+        }
     },
     password: {
         type: STRING,
         allowNull: false,
-        min: 3, max: 32,
-        isInt: { msg: 'Пароль должен быть от 3 до 32 символов' }
+        validate: {
+            isLength(hash) {
+                const enHash =  HashPassword.decrypt(hash)
+                if(!(enHash.length > 2) || !(enHash.length < 32)) {
+                    throw new Error('Пароль должен быть длиной от 3 до 32 символов')
+                }
+            }
+        }
     },
     role_id: {
         type: INTEGER,
@@ -44,3 +52,4 @@ export default postgres.define('users', {
     tableName: 'users',
     timestamps: false
 })
+

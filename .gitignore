@@ -1,3 +1,5 @@
+#dot file/folders
+./*
 # Logs
 logs
 *.log

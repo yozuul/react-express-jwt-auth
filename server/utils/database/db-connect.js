@@ -3,7 +3,7 @@ import DataTypes from 'sequelize'
 
 import { darkGray, red } from 'ansicolor'
 // Конфигурация подключения
-import { pg_config } from '../../configs'
+import { pg_config } from '../../config'
 // Postgres
 export const postgres = new Sequelize(
     pg_config.database,

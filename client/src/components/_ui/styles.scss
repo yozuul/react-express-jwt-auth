@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    font-family: 'Open Sans', sans-serif;;
+}
+body {
+    font-size: 14px;
+}
+* {
+    color: #000000d9;
+    box-sizing:border-box;
+}
+* ,
+*::before,
+*::after{box-sizing:border-box;}
+h1, h2, h3, h4, h5 {
+    margin-bottom: .5em;
+    font-weight: bold;
+}
+h1 {
+    font-size: 38px;
+    line-height: 1.23;
+}
+h2 {
+    font-size: 30px;
+    line-height: 1.35;
+}
+h3 {
+    font-size: 24px;
+    line-height: 1.35;
+}
+h4 {
+    font-size: 20px;
+    line-height: 1.4;
+}
+h5 {
+    font-size: 16px;
+    line-height: 1.5;
+}
+a, p {
+    overflow-wrap: break-word;
+}
+a {
+    outline: none;
+    cursor: pointer;
+    transition: color .3s;
+    text-decoration: none;
+    color: #1890ff;
+    &:hover {
+        color: #40a9ff;
+    }
+}
+.flex {
+    display: flex;
+}
+.justify-space-between {
+    justify-content: space-between;
+}
+.align-bottom {
+    align-items: flex-end;
+}
+.register {
+    margin-bottom: -3px;
+}
+.erroMessage {
+    height: 25px;
+    color: #F04670;
+    font-size: 12px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    bottom: -5px;
+    white-space: nowrap
+}
+@import './button.scss';
+@import './input.scss';
